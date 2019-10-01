@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Добавление пользователя</title>
+    <meta charset="utf-8" />
+    <style>
+        .field {
+            width: 180px;
+        }
+
+        * {
+            margin: 0px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 0px;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+        }
+
+
+        .preview {
+            width: 250px;
+            height: 250px;
+            margin-bottom: 20px;
+        }
+
+        tr:first-of-type {
+            background-color: #EFF7FF;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .wrapperForm {
+            margin: 20px 0;
+
+        }
+
+        form {
+            width: 100%;
+            background-color: #fff;
+            border: 2px solid #DEDEE6;
+            padding: 20px;
+        }
+
+        .avatar {
+            width: 100px;
+        }
+
+        .panel {
+            width: 150px;
+        }
+
+        h1 {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #21294A;
+            color: white;
+            font-size: 1.4em;
+
+        }
+
+        body {
+            background-color: #EFEFEF;
+        }
+
+        .body {
+            padding: 50px;
+        }
+
+        .back,
+        .save {
+            color: white;
+            background-color: mediumturquoise;
+            border-radius: 20px;
+            padding: 10px 50px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .save {
+            width: 200px;
+            border-width: 0px;
+            background-color: limegreen;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Добавление пользователя</h1>
+    <div class="body">
+        <a href="/">
+            <div class="back">Назад</div>
+        </a>
+        <div class="wrapperForm">
+            <img src="/image/default/default.jpg" class="preview" />
+            <form method="POST" id="createForm" enctype="multipart/form-data">
+                <label>Имя</label><br>
+                <input name="name" class="field" /><br><br>
+                <label>Возраст</label><br>
+                <input name="age" type="number" class="field" min="1" max="110" /><br><br>
+                <input type="file" name="avatar"><br><br>
+                <input type="submit" value="Добавить" class="save" />
+            </form>
+
+        </div>
+
+    </div>
+    <script>
+        let fileInput = document.forms.createForm.avatar;
+        fileInput.addEventListener('change', () => {
+            let file = fileInput.files[0];
+            if (!file) return;
+            let reader = new FileReader;
+            reader.readAsDataURL(file);
+
+            reader.onload = function (e) {
+                document.querySelector('.preview').src = reader.result;
+            }
+        })
+    </script>
+</body>
+<html>
